@@ -8,3 +8,7 @@ Feel free to modify the script for your own project.
 
 
 ![Screenshot](img/todoApp-screenshot.png)
+
+## Documentation
+
+[Click here for futher documentation](http://www.ryanantenor.be/demo-todo-application/)
