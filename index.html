@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template page</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--bower:css-->
+    <link rel="stylesheet" href="dest/styles/font-awesome.css" />
+    <!--endbower-->
+    <!--if [lt IE 9]<![endif]-->
+    <link rel="stylesheet" href="dest/styles/main.css">
+  </head>
+  <body>
+    <div ng-app="AntnrTodos" ng-controller="todoCtrl" class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>My Todo list            </h1>
+        </div>
+        <div class="col-md-6">
+          <h1>Info</h1>
+        </div>
+      </div>
+      <div class="row">        
+        <div class="col-md-6">
+          <div class="todo-table">
+            <table class="table">
+              <thead ng-style="tblColor">
+                <tr>
+                  <th> </th>
+                  <th class="col-md-6">My Todos </th>
+                  <th>Status<span ng-click="sortOrderStatus()" class="badge badge-filter"><i class="fa fa-filter"> </i></span></th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="task in tasks">
+                  <td> 
+                    <input type="checkbox" ng-click="checked(task)" ng-model="task.isChecked" class="toggleCheck">
+                  </td>
+                  <td>
+                    <div ng-hide="task.edit" class="text-label">{{task.title}}</div>
+                    <div ng-show="task.edit">
+                      <input type="text" ng-value="task.title" ng-model="task.title" ng-enter="edit($index)" class="form-control">
+                    </div>
+                  </td>
+                  <td>
+                    <div ng-class="task.label" ng-click="changeStatus($index)" class="label label-status">{{task.status}}</div>
+                  </td>
+                  <td>
+                    <div class="pull-right">
+                      <button ng-click="task.edit = true" class="btn btn-info btn-circle"><i class="fa fa-pencil"></i></button>
+                      <button ng-click="delete($index)" class="btn btn-danger btn-circle"><i class="fa fa-trash">                           </i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4">
+                    <form ng-submit="add(taskInput)" class="form">
+                      <input type="text" ng-model="taskInput" placeholder="Create a new task..." class="form-control">
+                    </form>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="well">This todo list is using localstorage of your browser, which your todos is still be accessible after closing your browser. Unless cache has been cleared.</div><strong>Table Color</strong>
+          <div class="well"><span ng-click="tblColor={background:'#6666cc'}" class="btn-color purple"></span><span ng-click="tblColor={background:'#e74c3c'}" style="background: #e74c3c;" class="btn-color"></span><span ng-click="tblColor={background:'#66cccc'}" style="background: #66cccc;" class="btn-color"></span><span ng-click="tblColor={background:'#16a085'}" style="background: #16a085;" class="btn-color"></span><span ng-click="tblColor={background:'#9b59b6'}" style="background: #9b59b6;" class="btn-color"></span></div>
+        </div>
+      </div>
+    </div>
+    <!--bower:js-->
+    <script src="dest/js/angular.js"></script>
+    <script src="dest/js/angular-animate.js"></script>
+    <!--endbower-->
+    <script type="text/javascript" src="dest/js/main.js"></script>
+  </body>
+</html>
